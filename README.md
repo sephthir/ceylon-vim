@@ -5,6 +5,6 @@ Ceylon syntax highlighting and indentation for vim
 
 This project contains some files that will allow **vim** to highlight syntax and indent Ceylon code.
 
-Copy `syntax/ceylon.vim` to your `~/.vim/syntax` directory and `indent/ceylon.vim` to your `~/.vim/indent` directory.
+Just copy the `ceylon.vim` files inside the `syntax`, `indent` and `ftdetect` to the corresponding directories inside your `~/.vim` directory.
 
-This is a work in progress (especially the indentation rules).
+**NOTE** This is a work in progress (especially the indentation rules).
