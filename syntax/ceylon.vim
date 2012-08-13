@@ -216,27 +216,13 @@ syn match   ceylonCharacter        "`[^`]*`" contains=ceylonSpecialChar,ceylonSp
 syn match   ceylonCharacter        "`\\``" contains=ceylonSpecialChar
 syn match   ceylonCharacter        "`[^\\]`"
 " 0x23452345345abcdef
-syn match   ceylonNumber           "\v<0x[0-9a-f]+>"
-" 123_123_123G
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+[kMGPT]?>"
-" 12345G
-syn match   ceylonNumber           "\v<\d+[kMGPT]?>"
-" 1111.1111P
-syn match   ceylonNumber           "\v<\d+\.\d+[kMGPTmunpf]?>"
-" 1111.1111e+5M
-syn match   ceylonNumber           "\v<\d+\.\d+[eE][+-]?\d+[kMGPTmunpf]?>"
-" 123_123_123.123
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+\.\d+>"
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+\.\d+[kMGPTmunpf]>"
-" 123412341234.123_123
-syn match   ceylonNumber           "\v<\d+\.\d{1,3}(_\d{3})+>"
-syn match   ceylonNumber           "\v<\d+\.\d{1,3}(_\d{3})+[kMGPTmunpf]>"
+" syn match   ceylonNumber           "\v<0x[0-9a-f]+(_[0-9a-f]+)*[kMGPT]?>"
+" 123_123_123G or 12345G
+syn match   ceylonNumber           "\v<\d+(_\d+)*[kMGPT]?>"
+" 123_123_123.123e+5M
+syn match   ceylonNumber           "\v<\d+(_\d+)*\.\d+(_\d+)*[kMGPTmunpf]?>"
 " 123_123.123e+5
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+\.\d+[eE][+-]?\d+>"
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+\.\d+[eE][+-]?\d+[kMGPTmunpf]>"
-" 123_123_123.123_123_123k
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+\.\d{1,3}(_\d{3})+>"
-syn match   ceylonNumber           "\v<\d{1,3}(_\d{3})+\.\d{1,3}(_\d{3})+[kMGPTmunpf]>"
+syn match   ceylonNumber           "\v<\d+(_\d+)*\.\d+(_\d+)*[eE][+-]?\d+[kMGPTmunpf]?>"
 
 " unicode characters
 syn match   ceylonSpecial "\\u\d\{4\}"
