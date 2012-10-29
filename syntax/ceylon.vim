@@ -63,8 +63,8 @@ syn keyword ceylonType            void
 " syn match   ceylonType			"\W\w*"
 syn keyword ceylonStatement       return
 syn keyword ceylonExceptions      throw try catch finally
-syn keyword ceylonMethodDecl      given
-syn keyword ceylonClassDecl       extends satisfies interface
+syn keyword ceylonMethodDecl      given satisfies
+syn keyword ceylonClassDecl       extends satisfies interface alias
 " to differentiate the keyword class from MyClass.class we use a match here
 syn match   ceylonTypedef         "\.\s*\<class\>"ms=s+1
 syn match   ceylonClassDecl       "^class\>"
@@ -135,8 +135,8 @@ syn match ceylonExternal		'^#!.*[/\\]ceylon\>'
 syn match ceylonExceptions        "\<Exception\>\|\<[A-Z]\{1,}[a-zA-Z0-9]*Exception\>"
 
 " Ceylon JDK stuff
-syn keyword ceylonJDKBuiltin    in exists nonempty is variable value function
-syn keyword ceylonJDKMethods 	each call inject sort print println 
+syn keyword ceylonJDKBuiltin    in exists nonempty is variable value function assert
+syn keyword ceylonJDKMethods 	print className
 syn cluster ceylonTop add=ceylonJDKBuiltin,ceylonJDKMethods
 
 " no useful I think, so I comment it..
