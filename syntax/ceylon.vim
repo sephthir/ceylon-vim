@@ -131,6 +131,7 @@ syn match ceylonOperator "\.\."
 syn match ceylonOperator "<\{2,3}"
 syn match ceylonOperator ">\{2,3}"
 syn match ceylonOperator "->"
+syn match ceylonOperator "=>"
 syn match ceylonExternal		'^#!.*[/\\]ceylon\>'
 syn match ceylonExceptions        "\<Exception\>\|\<[A-Z]\{1,}[a-zA-Z0-9]*Exception\>"
 
@@ -160,8 +161,8 @@ syn cluster ceylonTop add=ceylonExternal,ceylonError,ceylonError,ceylonBranch,ce
 " Comments
 syn keyword ceylonTodo             contained TODO FIXME XXX
 if exists("ceylon_comment_strings")
-  syn region  ceylonCommentString    contained start=+"+ end=+"+ end=+$+ end=+\*/+me=s-1,he=s-1 contains=ceylonSpecial,ceylonCommentStar,ceylonSpecialChar,@Spell
-  syn region  ceylonComment2String   contained start=+"+  end=+$\|"+  contains=ceylonSpecial,ceylonSpecialChar,@Spell
+  syn region  ceylonCommentString    contained start=+"+ end=+"+ end=+$+ end=+\*/+me=s-1,he=s-1 contains=ceylonCommentStar,ceylonSpecialChar,@Spell
+  syn region  ceylonComment2String   contained start=+"+  end=+$\|"+  contains=ceylonSpecialChar,@Spell
   syn match   ceylonCommentCharacter contained "'\\[^']\{1,6\}'" contains=ceylonSpecialChar
   syn match   ceylonCommentCharacter contained "'\\''" contains=ceylonSpecialChar
   syn match   ceylonCommentCharacter contained "'[^\\]'"
@@ -200,13 +201,13 @@ endif
 syn match   ceylonComment          "/\*\*/"
 
 " Strings and constants
-syn match   ceylonSpecialError     contained "\\."
+syn match   ceylonSpecialError     contained "\\^[{`"]"
 syn match   ceylonSpecialCharError contained "[^`]"
-syn match   ceylonSpecialChar      contained "\\\([4-9]\d\|[0-3]\d\d\|[\"\\`ntbrf]\|u\x\{4\}\)"
+syn match   ceylonSpecialChar      contained "\\{#[\da-fA-f]+}"
 syn match   ceylonEscape +\\[btnfr\\"'\`]+ contained
 syn region  ceylonString
       \ start=+"+ end=+"+ keepend
-      \ contains=ceylonEscape,ceylonSpecial,ceylonSpecialChar,ceylonSpecialError,@Spell
+      \ contains=ceylonEscape,ceylonSpecialChar,ceylonSpecialError,@Spell
 syn region  ceylonQuoted
       \ start=+'+ end=+'+
       \ contains=ceylonSpecialChar,ceylonSpecialError,@Spell
@@ -215,9 +216,9 @@ syn match   ceylonCharacter        "`[^`]*`" contains=ceylonSpecialChar,ceylonSp
 syn match   ceylonCharacter        "`\\``" contains=ceylonSpecialChar
 syn match   ceylonCharacter        "`[^\\]`"
 " 0x23452345345abcdef
- syn match   ceylonNumber           "\v<#[0-9a-f]+(_[0-9a-f]+)*[kMGPT]?>"
+syn match   ceylonNumber           "\v<\#[\da-fA-F]+(_[\da-fA-F]+)*[kMGPT]?>"
 " $01010101010
- syn match   ceylonNumber           "\v<$[01]+(_[01]+)*[kMGPT]?>"
+syn match   ceylonNumber           "\v<\$[01]+(_[01]+)*[kMGPT]?>"
 " 123_123_123G or 12345G
 syn match   ceylonNumber           "\v<\d+(_\d+)*[kMGPT]?>"
 " 123_123_123.123e+5M
@@ -225,10 +226,7 @@ syn match   ceylonNumber           "\v<\d+(_\d+)*\.\d+(_\d+)*[kMGPTmunpf]?>"
 " 123_123.123e+5
 syn match   ceylonNumber           "\v<\d+(_\d+)*\.\d+(_\d+)*[eE][+-]?\d+[kMGPTmunpf]?>"
 
-" unicode characters
-syn match   ceylonSpecial "\\u\d\{4\}"
-
-syn cluster ceylonTop add=ceylonString,ceylonCharacter,ceylonNumber,ceylonSpecial,ceylonStringError
+syn cluster ceylonTop add=ceylonString,ceylonCharacter,ceylonNumber,ceylonStringError
 
 if exists("ceylon_highlight_functions")
   if ceylon_highlight_functions == "indent"
@@ -361,7 +359,7 @@ if version >= 508 || !exists("did_ceylon_syn_inits")
   CeylonHiLink ceylonScopeDecl		ceylonStorageClass
   CeylonHiLink ceylonObjectDecl     ceylonStorageClass
   CeylonHiLink ceylonBoolean		Boolean
-  CeylonHiLink ceylonSpecial		Special
+"  CeylonHiLink ceylonSpecial		Special
   CeylonHiLink ceylonSpecialError	Error
   CeylonHiLink ceylonSpecialCharError	Error
   CeylonHiLink ceylonString		String
