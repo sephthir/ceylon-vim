@@ -86,7 +86,7 @@ if exists("ceylon_highlight_ceylon_lang_ids") || exists("ceylon_highlight_ceylon
   syn keyword ceylonJavaLangClass  InheritableThreadLocal Math Number Object Package Process
   syn keyword ceylonJavaLangClass  Runtime RuntimePermission InheritableThreadLocal
   syn keyword ceylonJavaLangClass  SecurityManager Short StrictMath StackTraceElement
-  syn keyword ceylonJavaLangClass  StringBuffer Thread ThreadGroup
+  syn keyword ceylonJavaLangClass  StringBuilder Thread ThreadGroup
   syn keyword ceylonJavaLangClass  ThreadLocal Throwable Void ArithmeticException
   syn keyword ceylonJavaLangClass  ArrayIndexOutOfBoundsException AssertionError
   syn keyword ceylonJavaLangClass  ArrayStoreException ClassCastException
@@ -204,15 +204,15 @@ syn match   ceylonComment          "/\*\*/"
 syn match   ceylonSpecialError     contained "\\^[{`"]"
 syn match   ceylonSpecialCharError contained "[^`]"
 syn match   ceylonSpecialChar      contained "\\{#[\da-fA-f]+}"
-syn match   ceylonEscape +\\[btnfr\\"'\`]+ contained
+syn match   ceylonEscape +\\[btnfr\\"'`]+ contained
 syn region  ceylonString
-      \ start=+"+ end=+"+ keepend
+      \ start=+"+ end=+"+ end=+\\""+ keepend
       \ contains=ceylonEscape,ceylonSpecialChar,ceylonSpecialError,@Spell
 syn region  ceylonQuoted
       \ start=+'+ end=+'+
       \ contains=ceylonSpecialChar,ceylonSpecialError,@Spell
 
-syn match   ceylonCharacter        "`[^`]*`" contains=ceylonSpecialChar,ceylonSpecialCharError
+syn match   ceylonCharacter        "`[^`]+`" contains=ceylonSpecialChar,ceylonSpecialCharError
 syn match   ceylonCharacter        "`\\``" contains=ceylonSpecialChar
 syn match   ceylonCharacter        "`[^\\]`"
 " 0x23452345345abcdef
