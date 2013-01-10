@@ -53,7 +53,7 @@ endif
 syn keyword ceylonExternal        package module
 syn match ceylonExternal          "\<import\(\s\+static\>\)\?"
 " syn keyword ceylonError           goto const
-syn keyword ceylonConditional     if else switch then
+syn keyword ceylonConditional     if else switch then case
 syn keyword ceylonRepeat          while for do
 syn keyword ceylonBoolean         true false
 syn keyword ceylonConstant        null
@@ -172,7 +172,6 @@ syn region  ceylonComment          start="/\*"  end="\*/" contains=@ceylonCommen
 syn match   ceylonCommentStar      contained "^\s*\*[^/]"me=e-1
 syn match   ceylonCommentStar      contained "^\s*\*$"
 syn match   ceylonLineComment      "//.*" contains=@ceylonCommentSpecial2,ceylonTodo,@Spell
-syn match   ceylonLineComment      "#.*" contains=@ceylonCommentSpecial2,ceylonTodo,@Spell
 CeylonHiLink ceylonCommentString ceylonString
 CeylonHiLink ceylonComment2String ceylonString
 CeylonHiLink ceylonCommentCharacter ceylonCharacter
@@ -216,7 +215,9 @@ syn match   ceylonCharacter        "`[^`]*`" contains=ceylonSpecialChar,ceylonSp
 syn match   ceylonCharacter        "`\\``" contains=ceylonSpecialChar
 syn match   ceylonCharacter        "`[^\\]`"
 " 0x23452345345abcdef
-" syn match   ceylonNumber           "\v<0x[0-9a-f]+(_[0-9a-f]+)*[kMGPT]?>"
+ syn match   ceylonNumber           "\v<#[0-9a-f]+(_[0-9a-f]+)*[kMGPT]?>"
+" $01010101010
+ syn match   ceylonNumber           "\v<$[01]+(_[01]+)*[kMGPT]?>"
 " 123_123_123G or 12345G
 syn match   ceylonNumber           "\v<\d+(_\d+)*[kMGPT]?>"
 " 123_123_123.123e+5M
