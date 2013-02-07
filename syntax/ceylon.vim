@@ -209,12 +209,12 @@ syn region  ceylonString
       \ start=+"+ end=+"+ end=+\\""+ keepend
       \ contains=ceylonEscape,ceylonSpecialChar,ceylonSpecialError,@Spell
 syn region  ceylonQuoted
-      \ start=+'+ end=+'+
+      \ start=+``+ end=+``+
       \ contains=ceylonSpecialChar,ceylonSpecialError,@Spell
 
-syn match   ceylonCharacter        "`[^`]+`" contains=ceylonSpecialChar,ceylonSpecialCharError
-syn match   ceylonCharacter        "`\\``" contains=ceylonSpecialChar
-syn match   ceylonCharacter        "`[^\\]`"
+syn match   ceylonCharacter        "'[^']+'" contains=ceylonSpecialChar,ceylonSpecialCharError
+syn match   ceylonCharacter        "'\\''" contains=ceylonSpecialChar
+syn match   ceylonCharacter        "'[^\\]'"
 " 0x23452345345abcdef
 syn match   ceylonNumber           "\v<\#[\da-fA-F]+(_[\da-fA-F]+)*[kMGPT]?>"
 " $01010101010
