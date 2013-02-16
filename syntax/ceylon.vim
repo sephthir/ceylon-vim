@@ -58,11 +58,11 @@ syn keyword ceylonRepeat          while for do
 syn keyword ceylonBoolean         true false
 syn keyword ceylonConstant        null
 syn keyword ceylonTypedef         this super outer
-syn keyword ceylonOperator        is nonempty satisfies given of
+syn keyword ceylonOperator        is nonempty satisfies given of abstracts
 syn keyword ceylonType            void
-" syn match   ceylonType			"\W\w*"
+syn match   ceylonType            "\<[A-Z][a-z]*\>"
 syn keyword ceylonStatement       return
-syn keyword ceylonExceptions      throw try catch finally
+syn keyword ceylonExceptions      throw try catch finally dynamic
 syn keyword ceylonMethodDecl      given satisfies
 syn keyword ceylonClassDecl       extends satisfies interface alias
 " to differentiate the keyword class from MyClass.class we use a match here
