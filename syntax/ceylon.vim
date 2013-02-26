@@ -60,7 +60,7 @@ syn keyword ceylonConstant        null
 syn keyword ceylonTypedef         this super outer
 syn keyword ceylonOperator        is nonempty satisfies given of abstracts
 syn keyword ceylonType            void
-syn match   ceylonType            "\<[A-Z][a-z]*\>"
+syn match   ceylonType            "\<[A-Z][A-Za-z]*\>"
 syn keyword ceylonStatement       return
 syn keyword ceylonExceptions      throw try catch finally dynamic
 syn keyword ceylonMethodDecl      given satisfies
