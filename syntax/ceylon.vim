@@ -60,7 +60,7 @@ syn keyword ceylonConstant        null
 syn keyword ceylonTypedef         this super outer
 syn keyword ceylonOperator        is nonempty satisfies given of abstracts
 syn keyword ceylonType            void
-syn match   ceylonType            "\<[A-Z][A-Za-z]*\>"
+syn match   ceylonType            "\<[A-Z][A-Za-z0-9_]*\>"
 syn keyword ceylonStatement       return
 syn keyword ceylonExceptions      throw try catch finally dynamic
 syn keyword ceylonMethodDecl      given satisfies
@@ -72,7 +72,7 @@ syn match   ceylonClassDecl       "[^.]\s*\<class\>"ms=s+1
 syn keyword ceylonObjectDecl      object
 syn keyword ceylonBranch          break continue
 syn match   ceylonUserLabelRef    "\k\+" contained
-syn keyword ceylonScopeDecl       shared abstract formal actual default
+syn keyword ceylonScopeDecl       shared abstract formal actual default late native
 
 
 if exists("ceylon_highlight_ceylon_lang_ids") || exists("ceylon_highlight_ceylon_lang") || exists("ceylon_highlight_all")
@@ -136,7 +136,7 @@ syn match ceylonExternal		'^#!.*[/\\]ceylon\>'
 syn match ceylonExceptions        "\<Exception\>\|\<[A-Z]\{1,}[a-zA-Z0-9]*Exception\>"
 
 " Ceylon JDK stuff
-syn keyword ceylonJDKBuiltin    in exists nonempty is variable value function assert
+syn keyword ceylonJDKBuiltin    in exists nonempty is variable value function assert assign shared late native
 syn keyword ceylonJDKMethods 	print className
 syn cluster ceylonTop add=ceylonJDKBuiltin,ceylonJDKMethods
 
@@ -203,7 +203,7 @@ syn match   ceylonComment          "/\*\*/"
 " Strings and constants
 syn match   ceylonSpecialError     contained "\\^[{`"]"
 syn match   ceylonSpecialCharError contained "[^`]"
-syn match   ceylonSpecialChar      contained "\\{#[\da-fA-f]+}"
+syn match   ceylonSpecialChar      contained "\\{#[0-9a-fA-f]+}"
 syn match   ceylonEscape +\\[btnfr\\"'`]+ contained
 syn region  ceylonString
       \ start=+"+ end=+"+ end=+\\""+ keepend
@@ -216,9 +216,9 @@ syn match   ceylonCharacter        "'[^']+'" contains=ceylonSpecialChar,ceylonSp
 syn match   ceylonCharacter        "'\\''" contains=ceylonSpecialChar
 syn match   ceylonCharacter        "'[^\\]'"
 " 0x23452345345abcdef
-syn match   ceylonNumber           "\v<\#[\da-fA-F]+(_[\da-fA-F]+)*[kMGPT]?>"
+syn match   ceylonNumber           "#\v<[0-9a-fA-F]+(_[0-9a-fA-F]+)*[kMGPT]?>"
 " $01010101010
-syn match   ceylonNumber           "\v<\$[01]+(_[01]+)*[kMGPT]?>"
+syn match   ceylonNumber           "$\v<[01]+(_[01]+)*[kMGPT]?>"
 " 123_123_123G or 12345G
 syn match   ceylonNumber           "\v<\d+(_\d+)*[kMGPT]?>"
 " 123_123_123.123e+5M
