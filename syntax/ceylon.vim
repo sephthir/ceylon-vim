@@ -206,9 +206,9 @@ syn match   ceylonSpecialCharError contained "[^`]"
 syn match   ceylonSpecialChar      contained "\\{#[0-9a-fA-f]+}"
 syn match   ceylonEscape +\\[btnfr\\"'`]+ contained
 syn region  ceylonString
-      \ start=+"+ end=+"+ end=+\\""+ keepend
-      \ contains=ceylonEscape,ceylonSpecialChar,ceylonSpecialError,@Spell
-syn region  ceylonQuoted
+      \ start=+"+ end=+"+ end=+\\""+ skip=+\\"+ keepend
+      \ contains=ceylonEscape,ceylonSpecialChar,ceylonSpecialError,ceylonQuoted,@Spell
+syn region  ceylonQuoted contained
       \ start=+``+ end=+``+
       \ contains=ceylonSpecialChar,ceylonSpecialError,@Spell
 
@@ -363,6 +363,7 @@ if version >= 508 || !exists("did_ceylon_syn_inits")
   CeylonHiLink ceylonSpecialError	Error
   CeylonHiLink ceylonSpecialCharError	Error
   CeylonHiLink ceylonString		String
+  CeylonHiLink ceylonEscape		String
   CeylonHiLink ceylonCharacter		Character
   CeylonHiLink ceylonSpecialChar	SpecialChar
   CeylonHiLink ceylonNumber		Number
